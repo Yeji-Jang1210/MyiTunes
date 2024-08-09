@@ -89,6 +89,6 @@ final class SearchiTunesVC: BaseVC {
         let navigationBarHeight = navigationController?.navigationBar.frame.height ?? 0
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         
-        return (screen - navigationBarHeight - tabBarHeight) / 2
+        return ((screen - navigationBarHeight - tabBarHeight) / 2 ) - 20
     }
 }
