@@ -27,6 +27,13 @@
 		B8B09FD92C64B78A0068446F /* iTunesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FD82C64B78A0068446F /* iTunesCollectionViewCell.swift */; };
 		B8B09FDB2C64BA9A0068446F /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FDA2C64BA9A0068446F /* MainTBC.swift */; };
 		B8B09FDD2C64C15D0068446F /* SearchiTunesSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FDC2C64C15D0068446F /* SearchiTunesSectionModel.swift */; };
+		B8B09FDF2C65F0970068446F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FDE2C65F0970068446F /* APIService.swift */; };
+		B8B09FE22C65F1670068446F /* SearchiTunesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FE12C65F1670068446F /* SearchiTunesVM.swift */; };
+		B8B09FE42C65F1B00068446F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FE32C65F1B00068446F /* APIManager.swift */; };
+		B8B09FE72C65F46B0068446F /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FE62C65F46B0068446F /* AppModel.swift */; };
+		B8B09FE92C6607340068446F /* iTunesCollectionViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FE82C6607340068446F /* iTunesCollectionViewCellVM.swift */; };
+		B8B09FEC2C6609FA0068446F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B8B09FEB2C6609FA0068446F /* Kingfisher */; };
+		B8B09FEE2C6618180068446F /* iTunesCollectionViewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FED2C6618180068446F /* iTunesCollectionViewCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +52,12 @@
 		B8B09FD82C64B78A0068446F /* iTunesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesCollectionViewCell.swift; sourceTree = "<group>"; };
 		B8B09FDA2C64BA9A0068446F /* MainTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
 		B8B09FDC2C64C15D0068446F /* SearchiTunesSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiTunesSectionModel.swift; sourceTree = "<group>"; };
+		B8B09FDE2C65F0970068446F /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		B8B09FE12C65F1670068446F /* SearchiTunesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiTunesVM.swift; sourceTree = "<group>"; };
+		B8B09FE32C65F1B00068446F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		B8B09FE62C65F46B0068446F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		B8B09FE82C6607340068446F /* iTunesCollectionViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesCollectionViewCellVM.swift; sourceTree = "<group>"; };
+		B8B09FED2C6618180068446F /* iTunesCollectionViewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesCollectionViewCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +69,7 @@
 				B8B09FC62C64A9B80068446F /* RxDataSources in Frameworks */,
 				B8B09FD02C64A9D80068446F /* RxSwift in Frameworks */,
 				B8B09FD32C64A9E50068446F /* Alamofire in Frameworks */,
+				B8B09FEC2C6609FA0068446F /* Kingfisher in Frameworks */,
 				B8B09FCE2C64A9D80068446F /* RxRelay in Frameworks */,
 				B8B09FD62C64A9EE0068446F /* Toast in Frameworks */,
 				B8B09FC92C64A9C20068446F /* SnapKit in Frameworks */,
@@ -85,8 +99,9 @@
 		B8B09FA02C64A7FE0068446F /* MyiTunes */ = {
 			isa = PBXGroup;
 			children = (
+				B8B09FE52C65F4660068446F /* Model */,
+				B8B09FE02C65F0EE0068446F /* Abstract */,
 				B8B09FC12C64A9490068446F /* Search */,
-				B8B09FBC2C64A8CD0068446F /* Custom */,
 				B8B09FB92C64A8B40068446F /* Network */,
 				B8B09FA12C64A7FE0068446F /* AppDelegate.swift */,
 				B8B09FA32C64A7FE0068446F /* SceneDelegate.swift */,
@@ -103,17 +118,10 @@
 		B8B09FB92C64A8B40068446F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				B8B09FDE2C65F0970068446F /* APIService.swift */,
+				B8B09FE32C65F1B00068446F /* APIManager.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		B8B09FBC2C64A8CD0068446F /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				B8B09FBD2C64A8D20068446F /* BaseVC.swift */,
-				B8B09FBF2C64A8DA0068446F /* BaseVM.swift */,
-			);
-			path = Custom;
 			sourceTree = "<group>";
 		};
 		B8B09FC12C64A9490068446F /* Search */ = {
@@ -121,7 +129,7 @@
 			children = (
 				B8B09FD72C64B7730068446F /* Cell */,
 				B8B09FC22C64A97F0068446F /* SearchiTunesVC.swift */,
-				B8B09FDC2C64C15D0068446F /* SearchiTunesSectionModel.swift */,
+				B8B09FE12C65F1670068446F /* SearchiTunesVM.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -130,8 +138,28 @@
 			isa = PBXGroup;
 			children = (
 				B8B09FD82C64B78A0068446F /* iTunesCollectionViewCell.swift */,
+				B8B09FDC2C64C15D0068446F /* SearchiTunesSectionModel.swift */,
+				B8B09FE82C6607340068446F /* iTunesCollectionViewCellVM.swift */,
+				B8B09FED2C6618180068446F /* iTunesCollectionViewCellView.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		B8B09FE02C65F0EE0068446F /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				B8B09FBD2C64A8D20068446F /* BaseVC.swift */,
+				B8B09FBF2C64A8DA0068446F /* BaseVM.swift */,
+			);
+			path = Abstract;
+			sourceTree = "<group>";
+		};
+		B8B09FE52C65F4660068446F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8B09FE62C65F46B0068446F /* AppModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +186,7 @@
 				B8B09FCF2C64A9D80068446F /* RxSwift */,
 				B8B09FD22C64A9E50068446F /* Alamofire */,
 				B8B09FD52C64A9EE0068446F /* Toast */,
+				B8B09FEB2C6609FA0068446F /* Kingfisher */,
 			);
 			productName = MyiTunes;
 			productReference = B8B09F9E2C64A7FE0068446F /* MyiTunes.app */;
@@ -193,6 +222,7 @@
 				B8B09FCA2C64A9D80068446F /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B8B09FD12C64A9E50068446F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				B8B09FD42C64A9EE0068446F /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				B8B09FEA2C6609FA0068446F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = B8B09F9F2C64A7FE0068446F /* Products */;
 			projectDirPath = "";
@@ -224,13 +254,19 @@
 				B8B09FD92C64B78A0068446F /* iTunesCollectionViewCell.swift in Sources */,
 				B8B09FA62C64A7FE0068446F /* ViewController.swift in Sources */,
 				B8B09FC02C64A8DA0068446F /* BaseVM.swift in Sources */,
+				B8B09FEE2C6618180068446F /* iTunesCollectionViewCellView.swift in Sources */,
 				B8B09FA22C64A7FE0068446F /* AppDelegate.swift in Sources */,
+				B8B09FDF2C65F0970068446F /* APIService.swift in Sources */,
 				B8B09FB82C64A8AB0068446F /* APIInfo.swift in Sources */,
 				B8B09FC32C64A97F0068446F /* SearchiTunesVC.swift in Sources */,
+				B8B09FE72C65F46B0068446F /* AppModel.swift in Sources */,
 				B8B09FA42C64A7FE0068446F /* SceneDelegate.swift in Sources */,
+				B8B09FE22C65F1670068446F /* SearchiTunesVM.swift in Sources */,
 				B8B09FBE2C64A8D20068446F /* BaseVC.swift in Sources */,
+				B8B09FE42C65F1B00068446F /* APIManager.swift in Sources */,
 				B8B09FDB2C64BA9A0068446F /* MainTBC.swift in Sources */,
 				B8B09FDD2C64C15D0068446F /* SearchiTunesSectionModel.swift in Sources */,
+				B8B09FE92C6607340068446F /* iTunesCollectionViewCellVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +527,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		B8B09FEA2C6609FA0068446F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -528,6 +572,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B8B09FD42C64A9EE0068446F /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		B8B09FEB2C6609FA0068446F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8B09FEA2C6609FA0068446F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

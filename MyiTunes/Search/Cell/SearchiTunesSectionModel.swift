@@ -9,15 +9,15 @@ import Foundation
 import RxDataSources
 
 struct SearchiTunesSectionModel {
-    var items: [String]
+    var items: [iTunesCollectionViewCellVM]
     
-    init(items: [String]) {
+    init(items: [iTunesCollectionViewCellVM]) {
         self.items = items
     }
 }
 
 extension SearchiTunesSectionModel: SectionModelType {
-    init(original: SearchiTunesSectionModel, items: [String]) {
+    init(original: SearchiTunesSectionModel, items: [iTunesCollectionViewCellVM]) {
         self = original
         self.items = items
     }

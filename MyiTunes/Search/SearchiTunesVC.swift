@@ -30,10 +30,13 @@ final class SearchiTunesVC: BaseVC {
     }()
     
     private lazy var dataSource = RxCollectionViewSectionedReloadDataSource<SearchiTunesSectionModel>(
-        configureCell: { dataSource, tableView, indexPath, item in
+        configureCell: { dataSource, tableView, indexPath, viewModel in
             let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: iTunesCollectionViewCell.identifier, for: indexPath) as! iTunesCollectionViewCell
+            cell.bind(viewModel: viewModel)
             return cell
     })
+    
+    let viewModel = SearchiTunesVM()
     
     init(title: String){
         super.init(nibName: nil, bundle: nil)
@@ -70,8 +73,12 @@ final class SearchiTunesVC: BaseVC {
     
     override func bind() {
         super.bind()
-
-        Observable.just([SearchiTunesSectionModel(items: Array(repeating: "1", count: 10))])
+        
+        let input = SearchiTunesVM.Input(searchButtonTap: search.searchBar.rx.searchButtonClicked, searchText: search.searchBar.searchTextField.rx.text.orEmpty)
+        
+        let output = viewModel.transform(input: input)
+        
+        output.lists
             .asDriver(onErrorJustReturn: [])
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
