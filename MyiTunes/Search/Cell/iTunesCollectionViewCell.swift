@@ -39,7 +39,9 @@ final class iTunesCollectionViewCell: BaseCollectionViewCell {
             .asDriver(onErrorJustReturn: [])
             .drive(with: self){ owner, urls in
                 for (index, imageView) in owner.cellView.detailImageViews.enumerated() {
-                    imageView.kf.setImage(with: urls[index])
+                    let processor = DownsamplingImageProcessor(size: imageView.frame.size)
+                    imageView.kf.indicatorType = .activity
+                    imageView.kf.setImage(with: urls[index],placeholder: nil,options: [.transition(.fade(1)), .forceTransition, .processor(processor)], completionHandler: nil)
                 }
             }
             .disposed(by: disposeBag)

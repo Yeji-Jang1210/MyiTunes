@@ -196,6 +196,8 @@ final class iTunesDetailVC: BaseVC {
             make.horizontalEdges.bottom.equalToSuperview()
         }
     }
+    
+    
 }
 
 extension iTunesDetailVC: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {

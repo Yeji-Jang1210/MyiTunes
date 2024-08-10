@@ -35,7 +35,8 @@ extension APIManager {
             return [
                 "term" : term,
                 "country" : "KR",
-                "media" : "software"
+                "media" : "software",
+                "limit": 10
             ]
         }
     }
