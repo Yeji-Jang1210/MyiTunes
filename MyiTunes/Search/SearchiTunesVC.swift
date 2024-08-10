@@ -74,7 +74,8 @@ final class SearchiTunesVC: BaseVC {
     override func bind() {
         super.bind()
         
-        let input = SearchiTunesVM.Input(searchButtonTap: search.searchBar.rx.searchButtonClicked, searchText: search.searchBar.searchTextField.rx.text.orEmpty)
+        let input = SearchiTunesVM.Input(searchButtonTap: search.searchBar.rx.searchButtonClicked,
+                                         searchText: search.searchBar.searchTextField.rx.text.orEmpty)
         
         let output = viewModel.transform(input: input)
         
@@ -82,6 +83,14 @@ final class SearchiTunesVC: BaseVC {
             .asDriver(onErrorJustReturn: [])
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        collectionView.rx.modelSelected(iTunesCollectionViewCellVM.self)
+            .bind(with: self){ owner, item in
+                let vc = iTunesDetailVC()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func calculateCollectionViewCellHeight() -> CGFloat {

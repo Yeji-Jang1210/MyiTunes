@@ -10,7 +10,7 @@ import RxSwift
 import Kingfisher
 import SnapKit
 
-final class iTunesCollectionViewCell: UICollectionViewCell {
+final class iTunesCollectionViewCell: BaseCollectionViewCell {
     
     static let identifier = String(describing: iTunesCollectionViewCell.self)
     
@@ -25,11 +25,6 @@ final class iTunesCollectionViewCell: UICollectionViewCell {
             make.edges.equalTo(contentView).inset(12)
         }
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     override func prepareForReuse() {
         super.prepareForReuse()

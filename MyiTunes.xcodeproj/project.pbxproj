@@ -34,6 +34,10 @@
 		B8B09FE92C6607340068446F /* iTunesCollectionViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FE82C6607340068446F /* iTunesCollectionViewCellVM.swift */; };
 		B8B09FEC2C6609FA0068446F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B8B09FEB2C6609FA0068446F /* Kingfisher */; };
 		B8B09FEE2C6618180068446F /* iTunesCollectionViewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FED2C6618180068446F /* iTunesCollectionViewCellView.swift */; };
+		B8B09FF12C661B680068446F /* iTunesDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FF02C661B680068446F /* iTunesDetailVC.swift */; };
+		B8B09FF32C661B700068446F /* iTunesDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FF22C661B700068446F /* iTunesDetailVM.swift */; };
+		B8B09FFA2C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FF92C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift */; };
+		B8B09FFE2C67AA670068446F /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FFD2C67AA670068446F /* BaseCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,10 @@
 		B8B09FE62C65F46B0068446F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		B8B09FE82C6607340068446F /* iTunesCollectionViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesCollectionViewCellVM.swift; sourceTree = "<group>"; };
 		B8B09FED2C6618180068446F /* iTunesCollectionViewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesCollectionViewCellView.swift; sourceTree = "<group>"; };
+		B8B09FF02C661B680068446F /* iTunesDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesDetailVC.swift; sourceTree = "<group>"; };
+		B8B09FF22C661B700068446F /* iTunesDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesDetailVM.swift; sourceTree = "<group>"; };
+		B8B09FF92C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppScreenShotCollectionViewCell.swift; path = ../../../../../../../../../Applications/AppScreenShotCollectionViewCell.swift; sourceTree = "<group>"; };
+		B8B09FFD2C67AA670068446F /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 		B8B09FA02C64A7FE0068446F /* MyiTunes */ = {
 			isa = PBXGroup;
 			children = (
+				B8B09FEF2C661B5D0068446F /* Detail */,
 				B8B09FE52C65F4660068446F /* Model */,
 				B8B09FE02C65F0EE0068446F /* Abstract */,
 				B8B09FC12C64A9490068446F /* Search */,
@@ -150,6 +159,7 @@
 			children = (
 				B8B09FBD2C64A8D20068446F /* BaseVC.swift */,
 				B8B09FBF2C64A8DA0068446F /* BaseVM.swift */,
+				B8B09FFD2C67AA670068446F /* BaseCollectionViewCell.swift */,
 			);
 			path = Abstract;
 			sourceTree = "<group>";
@@ -160,6 +170,24 @@
 				B8B09FE62C65F46B0068446F /* AppModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B8B09FEF2C661B5D0068446F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B8B09FF42C67A9160068446F /* Cell */,
+				B8B09FF02C661B680068446F /* iTunesDetailVC.swift */,
+				B8B09FF22C661B700068446F /* iTunesDetailVM.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		B8B09FF42C67A9160068446F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B8B09FF92C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,11 +282,15 @@
 				B8B09FD92C64B78A0068446F /* iTunesCollectionViewCell.swift in Sources */,
 				B8B09FA62C64A7FE0068446F /* ViewController.swift in Sources */,
 				B8B09FC02C64A8DA0068446F /* BaseVM.swift in Sources */,
+				B8B09FF12C661B680068446F /* iTunesDetailVC.swift in Sources */,
+				B8B09FFA2C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift in Sources */,
 				B8B09FEE2C6618180068446F /* iTunesCollectionViewCellView.swift in Sources */,
+				B8B09FFE2C67AA670068446F /* BaseCollectionViewCell.swift in Sources */,
 				B8B09FA22C64A7FE0068446F /* AppDelegate.swift in Sources */,
 				B8B09FDF2C65F0970068446F /* APIService.swift in Sources */,
 				B8B09FB82C64A8AB0068446F /* APIInfo.swift in Sources */,
 				B8B09FC32C64A97F0068446F /* SearchiTunesVC.swift in Sources */,
+				B8B09FF32C661B700068446F /* iTunesDetailVM.swift in Sources */,
 				B8B09FE72C65F46B0068446F /* AppModel.swift in Sources */,
 				B8B09FA42C64A7FE0068446F /* SceneDelegate.swift in Sources */,
 				B8B09FE22C65F1670068446F /* SearchiTunesVM.swift in Sources */,
