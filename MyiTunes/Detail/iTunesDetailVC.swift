@@ -28,7 +28,8 @@ final class iTunesDetailVC: BaseVC {
     private lazy var appInfoStackView = {
         let object = UIStackView()
         object.axis = .vertical
-        object.spacing = 12
+        object.alignment = .leading
+        object.spacing = 8
         [appTitleLabel, providerLabel, downloadButton].map { object.addArrangedSubview($0)}
         return object
     }()
@@ -52,6 +53,7 @@ final class iTunesDetailVC: BaseVC {
     private let providerLabel = {
         let object = UILabel()
         object.text = "Kakao Corp."
+        object.font = .systemFont(ofSize: 12)
         object.textColor = .lightGray
         return object
     }()
@@ -61,6 +63,7 @@ final class iTunesDetailVC: BaseVC {
         config.cornerStyle = .capsule
         config.attributedTitle = AttributedString("받기", attributes: AttributeContainer([.foregroundColor: UIColor.white]))
         config.background.backgroundColor = .systemBlue
+        config.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 20)
         
         let object = UIButton()
         object.configuration = config
@@ -146,9 +149,8 @@ final class iTunesDetailVC: BaseVC {
         //appInfoBackView
         appBackView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(scrollView)
-            make.height.equalTo(140)
+            make.height.equalTo(100)
         }
-        
         
         appImageView.snp.makeConstraints { make in
             make.verticalEdges.leading.equalToSuperview()
@@ -156,8 +158,9 @@ final class iTunesDetailVC: BaseVC {
         }
         
         appInfoStackView.snp.makeConstraints { make in
-            make.top.bottom.equalTo(appImageView)
-            make.leading.equalTo(appImageView.snp.trailing).offset(20)
+            make.top.equalTo(appImageView).offset(8)
+            make.bottom.equalTo(appImageView)
+            make.leading.equalTo(appImageView.snp.trailing).offset(12)
             make.trailing.equalToSuperview()
         }
         
