@@ -20,7 +20,6 @@ final class iTunesCollectionViewCellView: UIView {
     
     let appTitleLabel = {
         let object = UILabel()
-        object.text = "어쩌구저쩌구구구"
         object.font = .boldSystemFont(ofSize: 16)
         return object
     }()
@@ -44,7 +43,6 @@ final class iTunesCollectionViewCellView: UIView {
         let object = UILabel()
         object.font = .systemFont(ofSize: 12)
         object.textColor = .lightGray
-        object.text = "8.8"
         object.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return object
     }()
@@ -54,7 +52,6 @@ final class iTunesCollectionViewCellView: UIView {
         object.font = .systemFont(ofSize: 12)
         object.textColor = .lightGray
         object.textAlignment = .center
-        object.text = "Kakao Mobility App"
         return object
     }()
     
@@ -63,7 +60,6 @@ final class iTunesCollectionViewCellView: UIView {
         object.font = .systemFont(ofSize: 12)
         object.textColor = .lightGray
         object.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        object.text = "내비게이션"
         return object
     }()
     

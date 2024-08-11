@@ -7,7 +7,9 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 import RxSwift
+import RxDataSources
 
 final class iTunesDetailVC: BaseVC {
     
@@ -30,7 +32,7 @@ final class iTunesDetailVC: BaseVC {
         object.axis = .vertical
         object.alignment = .leading
         object.spacing = 8
-        [appTitleLabel, providerLabel, downloadButton].map { object.addArrangedSubview($0)}
+        [appTitleLabel, artistNameLabel, downloadButton].map { object.addArrangedSubview($0)}
         return object
     }()
     
@@ -45,14 +47,12 @@ final class iTunesDetailVC: BaseVC {
     
     private let appTitleLabel = {
         let object = UILabel()
-        object.text = "카카오맵"
         object.font = .boldSystemFont(ofSize: 20)
         return object
     }()
     
-    private let providerLabel = {
+    private let artistNameLabel = {
         let object = UILabel()
-        object.text = "Kakao Corp."
         object.font = .systemFont(ofSize: 12)
         object.textColor = .lightGray
         return object
@@ -87,14 +87,12 @@ final class iTunesDetailVC: BaseVC {
         let object = UILabel()
         object.textColor = .lightGray
         object.font = .systemFont(ofSize: 14)
-        object.text = "버전 5.13.0"
         return object
     }()
     
     private let releaseNotesTextView = {
         let object = UILabel()
         object.numberOfLines = 0
-        object.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         object.font = .systemFont(ofSize: 12)
         return object
     }()
@@ -102,20 +100,36 @@ final class iTunesDetailVC: BaseVC {
     private lazy var collectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 200, height: 400)
+        
         let object = UICollectionView(frame: .zero, collectionViewLayout: layout)
         object.register(AppScreenShotCollectionViewCell.self, forCellWithReuseIdentifier: AppScreenShotCollectionViewCell.identifier)
-        object.delegate = self
-        object.dataSource = self
         return object
     }()
+    
+    private lazy var dataSource = RxCollectionViewSectionedReloadDataSource<ScreenshotSectionModel> { dataSource, collectionView, indexPath, item in
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppScreenShotCollectionViewCell.identifier, for: indexPath) as! AppScreenShotCollectionViewCell
+        cell.screenshotImageView.kf.setImage(with: item)
+        return cell
+    }
     
     private let descriptionTextView = {
         let object = UILabel()
         object.numberOfLines = 0
-        object.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         object.font = .systemFont(ofSize: 12)
         return object
     }()
+    
+    var viewModel: iTunesDetailVM
+    
+    init(item: AppResult){
+        viewModel = iTunesDetailVM(item: item)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,8 +151,8 @@ final class iTunesDetailVC: BaseVC {
         super.configureLayout()
         
         scrollView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(20)
-            make.verticalEdges.equalToSuperview()
+            make.width.equalToSuperview().inset(20)
+            make.centerX.verticalEdges.equalToSuperview()
         }
         
         contentView.snp.makeConstraints { make in
@@ -148,7 +162,8 @@ final class iTunesDetailVC: BaseVC {
         
         //appInfoBackView
         appBackView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(scrollView)
+            make.top.equalTo(scrollView)
+            make.width.equalToSuperview()
             make.height.equalTo(100)
         }
         
@@ -197,20 +212,40 @@ final class iTunesDetailVC: BaseVC {
         }
     }
     
-    
-}
-
-extension iTunesDetailVC: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+    override func bind() {
+        super.bind()
+        
+        let output = viewModel.transform()
+        
+        output.appImage
+            .bind(with: self) { owner, url in
+                owner.appImageView.kf.setImage(with: url)
+            }
+            .disposed(by: disposeBag)
+        
+        output.appName
+            .bind(to: appTitleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.artistName
+            .bind(to: artistNameLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.version
+            .bind(to: versionTextLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.releaseNotes
+            .bind(to: releaseNotesTextView.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.screenshotUrls
+            .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        output.description
+            .bind(to: descriptionTextView.rx.text)
+            .disposed(by: disposeBag)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppScreenShotCollectionViewCell.identifier, for: indexPath) as! AppScreenShotCollectionViewCell
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: collectionView.frame.height)
-    }
 }

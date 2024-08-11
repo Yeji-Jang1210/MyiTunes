@@ -38,6 +38,7 @@
 		B8B09FF32C661B700068446F /* iTunesDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FF22C661B700068446F /* iTunesDetailVM.swift */; };
 		B8B09FFA2C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FF92C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift */; };
 		B8B09FFE2C67AA670068446F /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FFD2C67AA670068446F /* BaseCollectionViewCell.swift */; };
+		B8B0A0002C68F6D80068446F /* ScreenshotSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B09FFF2C68F6D80068446F /* ScreenshotSectionModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		B8B09FF22C661B700068446F /* iTunesDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesDetailVM.swift; sourceTree = "<group>"; };
 		B8B09FF92C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppScreenShotCollectionViewCell.swift; path = ../../../../../../../../../Applications/AppScreenShotCollectionViewCell.swift; sourceTree = "<group>"; };
 		B8B09FFD2C67AA670068446F /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		B8B09FFF2C68F6D80068446F /* ScreenshotSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotSectionModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				B8B09FF92C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift */,
+				B8B09FFF2C68F6D80068446F /* ScreenshotSectionModel.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				B8B09FC02C64A8DA0068446F /* BaseVM.swift in Sources */,
 				B8B09FF12C661B680068446F /* iTunesDetailVC.swift in Sources */,
 				B8B09FFA2C67A9FA0068446F /* AppScreenShotCollectionViewCell.swift in Sources */,
+				B8B0A0002C68F6D80068446F /* ScreenshotSectionModel.swift in Sources */,
 				B8B09FEE2C6618180068446F /* iTunesCollectionViewCellView.swift in Sources */,
 				B8B09FFE2C67AA670068446F /* BaseCollectionViewCell.swift in Sources */,
 				B8B09FA22C64A7FE0068446F /* AppDelegate.swift in Sources */,

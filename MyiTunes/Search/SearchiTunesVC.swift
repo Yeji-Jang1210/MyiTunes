@@ -85,8 +85,8 @@ final class SearchiTunesVC: BaseVC {
             .disposed(by: disposeBag)
         
         collectionView.rx.modelSelected(iTunesCollectionViewCellVM.self)
-            .bind(with: self){ owner, item in
-                let vc = iTunesDetailVC()
+            .bind(with: self){ owner, viewModel in
+                let vc = iTunesDetailVC(item: viewModel.app)
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)

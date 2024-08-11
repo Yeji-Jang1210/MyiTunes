@@ -20,7 +20,7 @@ class BaseVC: UIViewController {
         configureUI()
         bind()
     }
-    
+
     deinit {
         print("\(self) deinitialize")
     }
