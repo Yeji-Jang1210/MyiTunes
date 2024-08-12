@@ -9,41 +9,53 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class iTunesDetailVM: BaseVM {
-    
-    let item: AppResult
+final class iTunesDetailVM: BaseVM, BaseVMIO {
  
+    struct Input {
+        let item: Observable<AppResult>
+    }
+    
     struct Output {
-        let appImage: Observable<URL>
-        let appName: Observable<String>
-        let artistName: Observable<String>
-        let version: Observable<String>
-        let releaseNotes: Observable<String>
-        let screenshotUrls: Observable<[ScreenshotSectionModel]>
-        let description: Observable<String>
+        let appImage: Driver<URL?>
+        let appName: Driver<String>
+        let artistName: Driver<String>
+        let version: Driver<String>
+        let releaseNotes: Driver<String>
+        let screenshotUrls: Driver<[ScreenshotSectionModel]>
+        let description: Driver<String>
     }
     
-    init(item: AppResult){
-        self.item = item
-    }
-    
-    func transform() -> Output {
-        let appImage = Observable.just(item.artworkUrl100)
-                                    .compactMap { URL(string: $0) }
+    func transform(input: Input) -> Output {
         
-        let appName = Observable.just(item.trackName)
+        let appImage = input.item
+            .map{ URL(string: $0.artworkUrl100) }
+            .asDriver(onErrorJustReturn: nil)
         
-        let artistName = Observable.just(item.artistName)
+        let appName = input.item
+            .map { $0.trackName }
+            .asDriver(onErrorJustReturn: "")
         
-        let version = Observable.just("버전 \(item.version)")
+        let artistName = input.item
+            .map{ $0.artistName }
+            .asDriver(onErrorJustReturn: "")
         
-        let releaseNotes = Observable.just(item.releaseNotes)
+        let version = input.item
+            .map { "버전 \($0.version)" }
+            .asDriver(onErrorJustReturn: "")
         
-        let screenshotUrls = Observable.just(item.screenshotUrls)
+        let releaseNotes = input.item
+            .map { $0.releaseNotes }
+            .asDriver(onErrorJustReturn: "")
+        
+        let screenshotUrls = input.item
+            .map { $0.screenshotUrls }
             .map{ $0.compactMap{ URL(string: $0) } }
             .map{ [ScreenshotSectionModel(items: $0)] }
+            .asDriver(onErrorJustReturn: [])
         
-        let description = Observable.just(item.description)
+        let description = input.item
+            .map { $0.description }
+            .asDriver(onErrorJustReturn: "")
         
         return Output(appImage: appImage, appName: appName, artistName: artistName, version: version, releaseNotes: releaseNotes, screenshotUrls: screenshotUrls, description: description)
     }

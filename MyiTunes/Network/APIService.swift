@@ -63,5 +63,6 @@ final class APIService {
             
             return Disposables.create()
         }
+        .debug("API 통신")
     }
 }

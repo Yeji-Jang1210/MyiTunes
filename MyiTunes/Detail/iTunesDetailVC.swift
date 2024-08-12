@@ -120,11 +120,44 @@ final class iTunesDetailVC: BaseVC {
         return object
     }()
     
-    var viewModel: iTunesDetailVM
+    var viewModel = iTunesDetailVM()
     
     init(item: AppResult){
-        viewModel = iTunesDetailVM(item: item)
         super.init(nibName: nil, bundle: nil)
+        
+        let input = iTunesDetailVM.Input(item: Observable.just(item).debug("item"))
+        let output = viewModel.transform(input: input)
+        
+        output.appImage
+            .compactMap { $0 }
+            .drive(with: self){ owner, url in
+                owner.appImageView.kf.setImage(with: url)
+            }
+            .disposed(by: disposeBag)
+        
+        output.appName
+            .drive(appTitleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.artistName
+            .drive(artistNameLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.version
+            .drive(versionTextLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.releaseNotes
+            .drive(releaseNotesTextView.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.screenshotUrls
+            .drive(collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        output.description
+            .drive(descriptionTextView.rx.text)
+            .disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {
@@ -211,41 +244,4 @@ final class iTunesDetailVC: BaseVC {
             make.horizontalEdges.bottom.equalToSuperview()
         }
     }
-    
-    override func bind() {
-        super.bind()
-        
-        let output = viewModel.transform()
-        
-        output.appImage
-            .bind(with: self) { owner, url in
-                owner.appImageView.kf.setImage(with: url)
-            }
-            .disposed(by: disposeBag)
-        
-        output.appName
-            .bind(to: appTitleLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        output.artistName
-            .bind(to: artistNameLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        output.version
-            .bind(to: versionTextLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        output.releaseNotes
-            .bind(to: releaseNotesTextView.rx.text)
-            .disposed(by: disposeBag)
-        
-        output.screenshotUrls
-            .bind(to: collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
-        
-        output.description
-            .bind(to: descriptionTextView.rx.text)
-            .disposed(by: disposeBag)
-    }
-    
 }

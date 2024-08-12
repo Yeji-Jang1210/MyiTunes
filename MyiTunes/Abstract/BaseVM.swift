@@ -10,6 +10,13 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+protocol BaseVMIO {
+    associatedtype Input
+    associatedtype Output
+    
+    func transform(input: Input) -> Output
+}
+
 class BaseVM {
     let disposeBag = DisposeBag()
     

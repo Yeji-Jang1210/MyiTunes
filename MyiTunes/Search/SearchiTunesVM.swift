@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class SearchiTunesVM: BaseVM {
+class SearchiTunesVM: BaseVM, BaseVMIO {
     struct Input {
         let searchButtonTap: ControlEvent<Void>
         let searchText: ControlProperty<String>
