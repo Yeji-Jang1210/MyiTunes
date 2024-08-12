@@ -11,6 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Toast
 
 final class SearchiTunesVC: BaseVC {
     
@@ -88,6 +89,13 @@ final class SearchiTunesVC: BaseVC {
             .bind(with: self){ owner, viewModel in
                 let vc = iTunesDetailVC(item: viewModel.app)
                 owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.errorToast
+            .asDriver(onErrorJustReturn: "")
+            .drive(with: self){ owner, message in
+                owner.view.makeToast(message)
             }
             .disposed(by: disposeBag)
         

@@ -17,10 +17,12 @@ class SearchiTunesVM: BaseVM, BaseVMIO {
     
     struct Output {
         let lists: PublishSubject<[SearchiTunesSectionModel]>
+        let errorToast: PublishRelay<String>
     }
     
     func transform(input: Input) -> Output {
         let lists = PublishSubject<[SearchiTunesSectionModel]>()
+        let errorToast = PublishRelay<String>()
         
         input.searchButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
@@ -35,11 +37,11 @@ class SearchiTunesVM: BaseVM, BaseVMIO {
                     let vms = result.results.map { iTunesCollectionViewCellVM($0)}
                     lists.onNext([SearchiTunesSectionModel(items: vms)])
                 case .error(let error):
-                    print(error)
+                    errorToast.accept(error.message)
                 }
             }
             .disposed(by: disposeBag)
             
-        return Output(lists: lists)
+        return Output(lists: lists, errorToast: errorToast)
     }
 }

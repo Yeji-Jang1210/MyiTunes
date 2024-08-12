@@ -20,6 +20,21 @@ enum NetworkError: Error {
     case notfound
     case internalServerError
     case unknownNetworkError
+    
+    var message: String {
+        switch self {
+        case .badRequest:
+            return "잘못된 요청입니다."
+        case .forbidden:
+            return "접근이 금지되었습니다."
+        case .notfound:
+            return "요청한 자원을 찾을 수 없습니다."
+        case .internalServerError:
+            return "서버 내부 오류가 발생했습니다."
+        case .unknownNetworkError:
+            return "알 수 없는 네트워크 오류가 발생했습니다."
+        }
+    }
 }
 
 final class APIService {
@@ -57,7 +72,7 @@ final class APIService {
                     }
                     
                 case .failure(_):
-                    print("error")
+                    single(.success(.error(.unknownNetworkError)))
                 }
             }
             
